@@ -1,183 +1,190 @@
-
 # AI Programming Assignment
 
-**Name:** Dhimanth Reddy
+**Name:** Dhimanth Reddy  
 **Roll Number:** SE24UCSE055  
 **Course:** Artificial Intelligence  
 
 ---
 
+## Overview
+
 This repository contains implementations of:
-1. Turing Test Simulation
-2. CAPTCHA System
-3. Eight Queens Problem using BFS, DFS, IDDFS
 
+- Turing Test Simulation  
+- CAPTCHA System  
+- Eight Queens Problem using BFS, DFS, and IDDFS  
 
+All programs are implemented in Python 3 without external libraries.
 
-1️⃣ Assignment 1: Turing Test (turingtest.py)
+---
 
-Simulates the Turing Test — a judge tries to tell apart a human and a bot based on their responses.
+# 1️⃣ Assignment 1: Turing Test (turingtest.py)
 
-Objective
+Simulates the Turing Test — a judge attempts to distinguish between a human and a machine based on their responses.
 
-To demonstrate how machines can imitate human conversation and how a judge attempts to detect machine-like behavior.
+## Objective
 
-Components
+To demonstrate how machines imitate human conversation and how a judge evaluates responses to determine whether they are human or artificial.
 
-BotPlayer – produces robotic/scripted responses
+## Components
 
-HumanPlayer – produces natural responses
+- **Machine** – generates robotic responses  
+- **Human** – generates natural responses  
+- **Judge** – assigns a suspicion score based on keywords and response structure  
 
-Judge – analyzes responses and assigns suspicion score
+If suspicion score ≥ 40%, the response is classified as **BOT**, otherwise **HUMAN**.
 
-Suspicion ≥ 40% → classified as BOT
+## How to Run
 
-How to Run
+```bash
 python turingtest.py
-Sample Output
-Q: Do you have feelings?
-Bot   : I process sentiment data.
-Judge : BOT (suspicion: 40%)
-Human : Yes, I feel happy and excited.
-Judge : HUMAN (suspicion: 0%)
-2️⃣ Assignment 2: CAPTCHA System (captcha.py)
+```
 
-Implements a CAPTCHA system that blocks bots and allows humans to pass.
+## Sample Output
 
-Objective
+```
+Machine Responses:
+  I analyze input before producing output.
 
-To design a system that distinguishes humans from automated programs.
+Human Responses:
+  Haha that’s interesting!
 
-CAPTCHA Types
-Type	Example	Purpose
-Math	Solve: 14 + 7 = ?	Arithmetic ability
-Logic	What comes after Tuesday?	Common knowledge
-Text	Type: R X X R W	Character recognition
-Architecture
+Judge Verdict:
+Machine → BOT (50%)
+Human   → HUMAN (0%)
+```
 
-User → Challenge Generated → User Response → Verification → Access Granted/Blocked
+---
 
-How to Run
-python captcha.py
-Sample Output
-Type      : Math CAPTCHA
-Challenge : Solve: 2 - 14 = ?
-Bot   answered ??? → FAIL
-Human answered -12 → PASS
-3️⃣ Assignment 3: Eight Queens Problem (8queens.py)
+# 2️⃣ Assignment 2: CAPTCHA System (Captcha.py)
 
-Place 8 queens on a chessboard so that no two queens attack each other.
+Implements a CAPTCHA system that distinguishes humans from bots using different challenge types.
 
-Objective
+## Objective
+
+To design a security mechanism that allows human users to pass while blocking automated programs.
+
+## CAPTCHA Types
+
+| Type  | Example | Purpose |
+|-------|----------|----------|
+| Math  | What is 12 + 8? | Arithmetic reasoning |
+| Logic | What comes after Tuesday? | Common knowledge |
+| Text  | Enter code: A B X 9 P | Character recognition |
+
+## Architecture
+
+User → Challenge Generated → User Response → Verification → Access Granted / Blocked
+
+## How to Run
+
+```bash
+python Captcha.py
+```
+
+## Sample Output
+
+```
+Session ID : 3F82AB91CD
+Challenge  : What is 15 + 9?
+Response   : 24
+Result     : Access Granted.
+```
+
+---
+
+# 3️⃣ Assignment 3: Eight Queens Problem (8queens.py)
+
+Place 8 queens on a chessboard such that no two queens attack each other.
+
+## Objective
 
 To implement uninformed search strategies (BFS, DFS, IDDFS) to solve a constraint satisfaction problem.
 
-Problem Rules
+## Problem Rules
 
-No two queens share the same row
+- No two queens share the same row  
+- No two queens share the same column  
+- No two queens share the same diagonal  
 
-No two queens share the same column
+## State Representation
 
-No two queens share the same diagonal
+The state is represented as a list:
 
-State Representation
-
-A list where:
-
-Index = row
-
-Value = column
+- Index = row number  
+- Value = column number  
 
 Example:
 
+```
 [0, 4, 7, 5, 2, 6, 1, 3]
-Algorithms Implemented
-Algorithm	Strategy	Optimal?	Memory Usage
-BFS	Level-order search	Yes	High
-DFS	Depth-first search	Not guaranteed	Low
-IDDFS	Iterative deepening	Yes	Medium
-How to Run
-python eight_queens.py
-Sample Output
-8 Queens – Uninformed Search
+```
 
-BFS
-Nodes explored: 2057
-Time: 5.18 ms
+---
 
-DFS
-Nodes explored: 113
-Time: 0.43 ms
+## Algorithms Implemented
 
-IDDFS
-Nodes explored: 346
-Time: 1.21 ms
+### 1️⃣ Breadth-First Search (BFS)
+- Explores nodes level by level
+- Uses a queue
+- Guarantees optimal depth solution
+- Higher memory usage
 
-Solution Board:
+### 2️⃣ Depth-First Search (DFS)
+- Explores deepest nodes first
+- Uses a stack
+- Lower memory usage
+- Not guaranteed optimal
 
-Q . . . . . . .
-. . . . Q . . .
-. . . . . . . Q
-. . . . . Q . .
-. . Q . . . . .
-. . . . . . Q .
-. Q . . . . . .
-. . . Q . . . .
+### 3️⃣ Iterative Deepening DFS (IDDFS)
+- Combines BFS completeness and DFS efficiency
+- Repeatedly applies depth-limited DFS
+- Optimal and complete
 
+---
 
-3️⃣ Assignment 3: Eight Queens Problem (8queens.py)
-Algorithms Used
-1️⃣ Breadth-First Search (BFS)
+## How to Run
 
-Explores nodes level by level.
+```bash
+python 8queens.py
+```
 
-Uses a queue.
+---
 
-Guarantees shortest solution in terms of depth.
+## Performance Comparison
 
-Higher memory usage because it stores many states.
+| Algorithm | Time Complexity | Space Complexity |
+|------------|----------------|------------------|
+| BFS | O(b^d) | O(b^d) |
+| DFS | O(b^d) | O(d) |
+| IDDFS | O(b^d) | O(d) |
 
-2️⃣ Depth-First Search (DFS)
+Where:
+- **b** = branching factor  
+- **d** = depth of solution  
 
-Explores deepest nodes first.
+---
 
-Uses a stack.
+## Observations
 
-Uses less memory.
+- BFS explores more nodes but guarantees optimal solution.
+- DFS may find solution faster but depends on search order.
+- IDDFS balances memory efficiency and completeness.
 
-May find solution faster, but not guaranteed optimal.
+---
 
-3️⃣ Iterative Deepening DFS (IDDFS)
+## Requirements
 
-Combines BFS completeness and DFS memory efficiency.
+- Python 3
+- No external libraries required
 
-Repeatedly runs DFS with increasing depth limit.
+---
 
-Optimal and complete.
+## Conclusion
 
-Performance Comparison
-Algorithm	Nodes Explored	Time (ms)	Memory Usage
-BFS	Higher	Slower	High
-DFS	Lower	Faster	Low
-IDDFS	Medium	Medium	Medium
-Observations
+This assignment demonstrates:
+- Human vs machine differentiation (Turing Test)
+- Security validation using CAPTCHA
+- Problem solving using uninformed search algorithms
 
-BFS explores more nodes but guarantees optimal solution.
-
-DFS explores fewer nodes but depends on search order.
-
-IDDFS balances memory efficiency and completeness.
-
-Time Complexity
-
-Let:
-
-b = branching factor
-
-d = depth of solution
-
-Algorithm	Time Complexity	Space Complexity
-BFS	O(b^d)	O(b^d)
-DFS	O(b^d)	O(d)
-IDDFS	O(b^d)	O(d)
-
+All implementations follow modular design and standard AI search principles.
